@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetic link</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="https://www.youtube.com/watch?v=Hskt1jN7JTc&t=1s"></a>
+            <span class="material-symbols-outlined">
+                star
+                </span>
+                
+        </li>
+        <li>
+            <a href="https://www.youtube.com/watch?v=1tz-m88gFVA"></a>
+            <span class="material-symbols-outlined">
+                favorite
+                </span>
+        </li>
+        <li>
+        <a href="https://www.youtube.com/watch?v=bD_nlDO09f4"></a>
+        <span class="material-symbols-outlined">
+            bolt
+            </span>
+        </li>
+        <div id="cursor"></div>
+    </ul>
+    <script>
+        let cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        })
+        let items = document.querySelectorAll('ul li').forEach(item => {
+            item.addEventListener('mousemove', (e) => {
+                let x = e.offsetX;
+                let y = e.offsetY;
+
+                let itemWidth = item.clientWidth;
+                let itemHeight = item.clientHeight;
+
+                let transX = (x - itemWidth)
+                let transY = (y - itemHeight)
+
+                item.style.transform = `translateX(${transX}px)
+                translateY(${transY}px)`;
+            });
+            item.addEventListener('mouseout', (e) => {
+                item.style.transform = ``;
+            })
+        })
+    </script>
+</body>
+</html>
